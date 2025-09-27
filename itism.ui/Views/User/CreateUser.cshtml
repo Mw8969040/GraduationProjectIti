@@ -1,0 +1,12 @@
+﻿@model CreateUserVM
+<h2>Create User</h2>
+
+<form asp-action="CreateUser" method="post">
+    @await Html.PartialAsync("_UserForm", Model)
+    <button type="submit">Create</button>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

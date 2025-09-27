@@ -1,0 +1,67 @@
+@model PageResults<CourseVM>
+
+<h2>Courses</h2>
+<a asp-action="Create" class="btn btn-primary">Create Course</a>
+
+<form asp-action="Index" method="get" class="search-light d-flex align-items-center gap-2">
+    <input class="form-control" type="text" name="searchName" placeholder="Search by" value="@ViewData["SearchName"]" />
+    <select class="form-select" name="category">
+        <option value="">Select Category</option>
+        @foreach (var c in Enum.GetValues(typeof(Category)))
+        {
+            <option value="@c" selected="@(ViewData["Category"] != null && (Category)ViewData["Category"] == (Category)c)">@c</option>
+        }
+    </select>
+    <button class="btn btn-primary" type="submit">Search</button>
+    <input type="hidden" name="page" value="@Model.Page" />
+    <input type="hidden" name="pageSize" value="@Model.PageSize" />
+    
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Instructor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Items)
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.Category</td>
+                <td>@course.InstructorName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@course.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@course.Id" class="btn btn-primary">Edit</a>
+                    <form asp-action="Delete" method="post" asp-route-id="@course.Id" style="display:inline">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPrevious ? "" : "disabled")">
+            <a class="page-link" asp-action="Index" asp-route-page="@(Model.Page - 1)">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.Page == i ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.HasNext ? "" : "disabled")">
+            <a class="page-link" asp-action="Index" asp-route-page="@(Model.Page + 1)">Next</a>
+        </li>
+    </ul>
+}
+
+

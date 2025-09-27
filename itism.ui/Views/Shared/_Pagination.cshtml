@@ -1,0 +1,20 @@
+@model (int currentPage, int totalPages, string action, System.Collections.Generic.IDictionary<string, string> routeValues)
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.currentPage <= 1 ? "disabled" : "")">
+            <a class="page-link" asp-action="@Model.action" asp-all-route-data="@Model.routeValues" asp-route-page="@(Model.currentPage - 1)">Previous</a>
+        </li>
+        @for (var p = 1; p <= Model.totalPages; p++)
+        {
+            <li class="page-item @(p == Model.currentPage ? "active" : "")">
+                <a class="page-link" asp-action="@Model.action" asp-all-route-data="@Model.routeValues" asp-route-page="@p">@p</a>
+            </li>
+        }
+        <li class="page-item @(Model.currentPage >= Model.totalPages ? "disabled" : "")">
+            <a class="page-link" asp-action="@Model.action" asp-all-route-data="@Model.routeValues" asp-route-page="@(Model.currentPage + 1)">Next</a>
+        </li>
+    </ul>
+    </nav>
+
+

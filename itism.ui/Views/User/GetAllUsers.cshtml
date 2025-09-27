@@ -1,0 +1,67 @@
+﻿@model PageResults<UserVM>
+
+<h2>Users</h2>
+<a href="/User/CreateUser" class="btn btn-primary">Create User</a>
+
+<form asp-action="GetAllUsers" method="get" class="search-light d-flex align-items-center gap-2">
+    <input class="form-control" type="text" name="searchName" placeholder="Search by" value="@ViewData["SearchName"]" />
+    <select class="form-select" name="role">
+        <option value="">Select Role</option>
+        @foreach (var r in Enum.GetValues(typeof(UserRole)))
+        {
+            <option value="@r" selected="@(ViewData["Role"] != null && (UserRole)ViewData["Role"] == (UserRole)r)">
+                @r.ToString()
+            </option>
+        }
+    </select>
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Items)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    <a asp-action="GetByIdUser" asp-route-id="@user.Id" class="btn btn-info">Details</a>
+                    <a asp-action="UpdateUser" asp-route-id="@user.Id" class="btn btn-primary">Update</a>
+                    <form asp-action="DeleteUser" method="post" asp-route-id="@user.Id" style="display:inline">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPrevious ? "" : "disabled")">
+            <a class="page-link" asp-action="GetAllUsers" asp-route-page="@(Model.Page - 1)">Previous</a>
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.Page == i ? "active" : "")">
+                <a class="page-link" asp-action="GetAllUsers" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        <li class="page-item @(Model.HasNext ? "" : "disabled")">
+            <a class="page-link" asp-action="GetAllUsers" asp-route-page="@(Model.Page + 1)">Next</a>
+        </li>
+    </ul>
+}
+

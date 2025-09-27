@@ -1,0 +1,16 @@
+@model itism.dal.Models.Grade
+
+<h2>Grade Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">Session</dt>
+    <dd class="col-sm-10">@Model.SessionId</dd>
+    <dt class="col-sm-2">Trainee</dt>
+    <dd class="col-sm-10">@Model.TraineeId</dd>
+    <dt class="col-sm-2">Value</dt>
+    <dd class="col-sm-10">@Model.Value</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+
+

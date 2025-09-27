@@ -1,0 +1,269 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background: #0b1020;
+  color: #e5e7eb;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Theme variables */
+:root {
+  --brand-bg: #0f172a; /* slate-900 */
+  --brand-primary: #22c55e; /* emerald-500 */
+  --brand-primary-700: #15803d;
+  --brand-muted: #94a3b8; /* slate-400 */
+  --brand-surface: #0b1220; /* slightly lighter than bg */
+  --brand-accent: #60a5fa; /* blue-400 */
+  --brand-danger: #ef4444; /* red-500 */
+}
+
+/* Navbar */
+.navbar.branded {
+  background: linear-gradient(90deg, var(--brand-bg), #111827);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.navbar.branded .navbar-brand,
+.navbar.branded .nav-link {
+  color: #e5e7eb !important;
+}
+.navbar.branded .nav-link.active,
+.navbar.branded .nav-link:hover {
+  color: var(--brand-primary) !important;
+}
+
+.brand-dot {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background: radial-gradient(circle at 30% 30%, #34d399, var(--brand-primary-700));
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+}
+
+/* Buttons */
+.btn-brand {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #0b1220;
+}
+.btn-brand:hover {
+  background-color: var(--brand-primary-700);
+  border-color: var(--brand-primary-700);
+  color: #fff;
+}
+/* Accent and danger buttons */
+.btn-accent { background-color: var(--brand-accent); border-color: var(--brand-accent); color: #0b1220; }
+.btn-accent:hover { background-color: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+.btn-danger { background-color: var(--brand-danger); border-color: var(--brand-danger); }
+
+/* Make default primary match the brand */
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #0b1220;
+}
+.btn-primary:hover {
+  background-color: var(--brand-primary-700);
+  border-color: var(--brand-primary-700);
+  color: #fff;
+}
+
+/* Cards / Surfaces */
+.surface {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.surface h5 { margin-bottom: 6px; }
+.text-muted { color: var(--brand-muted) !important; }
+
+/* Tables */
+table.table thead th {
+  color: var(--brand-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  font-size: .85rem;
+}
+table.table tbody tr:hover {
+  background-color: rgba(34,197,94,0.06);
+}
+table.table {
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  overflow: hidden;
+}
+table.table td, table.table th { border-color: rgba(255,255,255,0.06) !important; }
+table.table tbody td {
+  color: #ffffff !important;
+}
+
+label.form-label { color: #cbd5e1; }
+input::placeholder { color: #94a3b8; }
+
+/* Forms */
+.form-control, .form-select {
+  background-color: #0a0f1a;
+  border-color: rgba(255,255,255,0.1);
+  color: #ffffff !important;
+  caret-color: #ffffff;
+  -webkit-text-fill-color: #ffffff; /* ensure white on WebKit */
+}
+
+/* Light background inputs -> dark text */
+.form-control.bg-white,
+.form-select.bg-white,
+.bg-white .form-control,
+.bg-white .form-select,
+input.form-control[style*="background-color: #fff"],
+select.form-select[style*="background-color: #fff"] {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  caret-color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+
+/* Generic fallback for native light inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea {
+  color: #ffffff !important;
+  caret-color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* Force black text for search fields with light backgrounds on all pages */
+input[type="search"],
+input[type="text"][placeholder*="Search" i],
+input[type="text"][placeholder*="search" i] {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  caret-color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+input[type="search"]::placeholder,
+input[type="text"][placeholder*="Search" i]::placeholder,
+input[type="text"][placeholder*="search" i]::placeholder {
+  color: #6b7280; /* dark gray placeholder */
+}
+
+/* Explicit light search group (label + input in black-on-white) */
+.search-light .form-label { color: #111827 !important; }
+.search-light input[type="text"],
+.search-light input[type="search"],
+.search-light select {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+.search-light input::placeholder { color: #111827 !important; }
+.search-light .form-control:focus {
+  background-color: #ffffff !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 .2rem rgba(34,197,94,0.15) !important;
+}
+
+/* Remove number input spinners */
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* Autofill override */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px #0a0f1a inset;
+  box-shadow: 0 0 0px 1000px #0a0f1a inset;
+}
+.form-control:focus, .form-select:focus {
+  background-color: #0a0f1a;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 .2rem rgba(34,197,94,0.15);
+}
+
+/* Footer */
+footer.footer {
+  background: #0a0f1a;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Containers */
+.container, .container-fluid {
+  max-width: 1200px;
+}
+
+/* Page headers */
+h1, h2 {
+  font-weight: 800;
+}
+.page-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #93c5fd, #a7f3d0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Search group polishing */
+.search-light {
+  margin: 12px 0 18px 0;
+}
+.search-light input[type="text"],
+.search-light input[type="search"],
+.search-light select {
+  height: 40px;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+.search-light button[type="submit"] {
+  height: 40px;
+  border-radius: 10px;
+}
+
+/* Hero (Home) */
+.hero {
+  background: linear-gradient(180deg, rgba(96,165,250,0.25), rgba(34,197,94,0.12));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 40px 28px;
+}

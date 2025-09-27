@@ -1,0 +1,37 @@
+@model IEnumerable<itism.dal.Models.Session>
+
+<h2>Sessions</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create</a>
+@*    Add filters/date search later *@
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>CourseId</th>
+            <th>Start</th>
+            <th>End</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.CourseId</td>
+            <td>@s.StartDate.ToShortDateString()</td>
+            <td>@s.EndDate.ToShortDateString()</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-sm btn-info">Details</a>
+                <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Edit</a>
+                <form asp-action="Delete" asp-route-id="@s.Id" method="post" style="display:inline">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+
+

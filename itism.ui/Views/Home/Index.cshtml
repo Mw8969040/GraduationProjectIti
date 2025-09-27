@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="surface">
+            <h5>Users</h5>
+            <p class="text-muted">Manage users and roles</p>
+            <a class="btn btn-brand" asp-controller="User" asp-action="GetAllUsers">Open</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="surface">
+            <h5>Courses</h5>
+            <p class="text-muted">Browse and edit courses</p>
+            <a class="btn btn-brand" asp-controller="Course" asp-action="Index">Open</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="surface">
+            <h5>Sessions</h5>
+            <p class="text-muted">Schedule and manage sessions</p>
+            <a class="btn btn-brand" asp-controller="Session" asp-action="Index">Open</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="surface">
+            <h5>Grades</h5>
+            <p class="text-muted">Record and review grades</p>
+            <a class="btn btn-brand" asp-controller="Grade" asp-action="Index">Open</a>
+        </div>
+    </div>
+</div>
